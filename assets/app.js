@@ -37,15 +37,22 @@ function isNum(str) {
   return /[0-9]+/.test(str);
 }
 
-document.getElementById("submit").addEventListener("click", function() {
+function calculateExpression() {
   const input = document.getElementById("intervalsInput").value;
   const result = calculate(input);
   document.getElementById("output").innerText = "Output: " + result;
+}
+
+document.getElementById("submit").addEventListener("click", calculateExpression);
+
+document.getElementById("intervalsInput").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    calculateExpression();
+  }
 });
 
-
-  // Add this script to clear the input field on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    var intervalsInput = document.getElementById('intervalsInput');
-    intervalsInput.value = ''; // Set the input value to an empty string
-  });
+// Add this script to clear the input field on page load
+document.addEventListener('DOMContentLoaded', function() {
+  var intervalsInput = document.getElementById('intervalsInput');
+  intervalsInput.value = ''; // Set the input value to an empty string
+});
